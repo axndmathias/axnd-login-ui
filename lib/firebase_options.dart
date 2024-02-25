@@ -44,38 +44,37 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBSk5Z9nvma6DhBw7TYYnM_rhahaNuftms',
-    appId: '1:690104518018:web:a417d646eb4c51646f7b9b',
-    messagingSenderId: '690104518018',
-    projectId: 'axndlogin',
-    authDomain: 'axndlogin.firebaseapp.com',
-    storageBucket: 'axndlogin.appspot.com',
-    measurementId: 'G-YJ3HRHRCFC',
+    apiKey: 'AIzaSyCDEC74nYtPFHxBRjWLfXFfr_xeo8ADPOU',
+    appId: '1:975390685537:web:d3f1c5d9aee5c23df12d20',
+    messagingSenderId: '975390685537',
+    projectId: 'authlogin-c99e8',
+    authDomain: 'authlogin-c99e8.firebaseapp.com',
+    storageBucket: 'authlogin-c99e8.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBo-Q4BKchSYtcjcYxS8HJVoYZu2UXhXII',
-    appId: '1:690104518018:android:02864491c140ac6a6f7b9b',
-    messagingSenderId: '690104518018',
-    projectId: 'axndlogin',
-    storageBucket: 'axndlogin.appspot.com',
+    apiKey: 'AIzaSyASZQ0gZUUpu7a2eMeo4rqd4Sp91vRGIwc',
+    appId: '1:975390685537:android:b9995890e7d40358f12d20',
+    messagingSenderId: '975390685537',
+    projectId: 'authlogin-c99e8',
+    storageBucket: 'authlogin-c99e8.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDZrgPAv8BeoZmZ2fE4ughUCT4COtVajn0',
-    appId: '1:690104518018:ios:4e66d1167a26ca2c6f7b9b',
-    messagingSenderId: '690104518018',
-    projectId: 'axndlogin',
-    storageBucket: 'axndlogin.appspot.com',
+    apiKey: 'AIzaSyC8ER6eg4yaTEPe2Exb2jIWGf2uBpGqiG8',
+    appId: '1:975390685537:ios:939ac47720ab750af12d20',
+    messagingSenderId: '975390685537',
+    projectId: 'authlogin-c99e8',
+    storageBucket: 'authlogin-c99e8.appspot.com',
     iosBundleId: 'com.axnd.axndlogin',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDZrgPAv8BeoZmZ2fE4ughUCT4COtVajn0',
-    appId: '1:690104518018:ios:2cdf34beb3ac7e436f7b9b',
-    messagingSenderId: '690104518018',
-    projectId: 'axndlogin',
-    storageBucket: 'axndlogin.appspot.com',
+    apiKey: 'AIzaSyC8ER6eg4yaTEPe2Exb2jIWGf2uBpGqiG8',
+    appId: '1:975390685537:ios:604bf6299a18dfacf12d20',
+    messagingSenderId: '975390685537',
+    projectId: 'authlogin-c99e8',
+    storageBucket: 'authlogin-c99e8.appspot.com',
     iosBundleId: 'com.axnd.axndlogin.RunnerTests',
   );
 }
