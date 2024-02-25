@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "975390685537",
-    "project_id": "authlogin-c99e8",
-    "storage_bucket": "authlogin-c99e8.appspot.com"
+    "project_number": "690104518018",
+    "project_id": "axndlogin",
+    "storage_bucket": "axndlogin.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:975390685537:android:b9995890e7d40358f12d20",
+        "mobilesdk_app_id": "1:690104518018:android:02864491c140ac6a6f7b9b",
         "android_client_info": {
           "package_name": "com.axnd.axndlogin"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyASZQ0gZUUpu7a2eMeo4rqd4Sp91vRGIwc"
+          "current_key": "AIzaSyBo-Q4BKchSYtcjcYxS8HJVoYZu2UXhXII"
         }
       ],
       "services": {

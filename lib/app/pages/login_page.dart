@@ -1,6 +1,7 @@
 import 'package:axndlogin/app/components/signin_button.dart';
 import 'package:axndlogin/app/components/custom_textfield.dart';
 import 'package:axndlogin/app/components/social_button.dart';
+import 'package:axndlogin/app/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -15,12 +16,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // textField editing controller
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
 
+  final AuthService authService = AuthService();
+
 // sign user in method
-  void signUserIn() async {
-    // show loadind circle
+  void singInUser(BuildContext context) async {
+    // show loading circle
     showDialog(
       context: context,
       builder: (context) {
@@ -32,73 +34,34 @@ class _LoginPageState extends State<LoginPage> {
 
     // try sign in
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: 'test@gmail.com',
-        password: '11122223333',
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
       );
       // pop the loading circle
-      //Navigator.pop(context);
+      if (context.mounted) Navigator.of(context).pop();
     } on FirebaseAuthException catch (e) {
-      print("Error-------------->>>");
-      print(e);
-      // pop the loading circle
-
-      // Navigator.pop(context);
-
-      // WRONG EMAIL
-      if (e.code == 'user-not-found') {
-        // show error to user
-        print("Error-------------->>>");
-        print(e);
-        //wrongEmailMessage();
-      }
-
-      //     // WRONG PASSWORD
-      //     else if (e.code == 'wrong-password') {
-      //       // show error to user
-      //       print("Error-------------->>>");
-      //       print(e);
-      //       print('wrong-password');
-
-      //       // wrongPasswordMessage();
-      //     }
-      //   }
-      // }
-
-      // // wrong email message popup
-      // void wrongEmailMessage() {
-      //   showDialog(
-      //     context: context,
-      //     builder: (context) {
-      //       return const AlertDialog(
-      //         backgroundColor: Colors.deepPurple,
-      //         title: Center(
-      //           child: Text(
-      //             'Incorrect Email',
-      //             style: TextStyle(color: Colors.white),
-      //           ),
-      //         ),
-      //       );
-      //     },
-      //   );
+      // show error message
+      showErrorMessage(e.code);
     }
+  }
 
-    // // wrong password message popup
-    // void wrongPasswordMessage() {
-    //   showDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return const AlertDialog(
-    //         backgroundColor: Colors.deepPurple,
-    //         title: Center(
-    //           child: Text(
-    //             'Incorrect Password',
-    //             style: TextStyle(color: Colors.white),
-    //           ),
-    //         ),
-    //       );
-    //     },
-    //   );
+// error message to user
+  void showErrorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.deepPurple,
+          title: Center(
+            child: Text(
+              message,
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -106,9 +69,8 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: Center(
+        child: Center(
+          child: SingleChildScrollView(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               // logo
@@ -155,7 +117,14 @@ class _LoginPageState extends State<LoginPage> {
               // sign in button
               const SizedBox(height: 25),
               SigninButton(
-                onTap: signUserIn,
+                onTap: () {
+                  singInUser(context);
+                },
+                //() {
+                //  signUserIn(
+                //       email: emailController.text,
+                //       password: passwordController.text);
+                // },
               ),
 
               // or continue with
