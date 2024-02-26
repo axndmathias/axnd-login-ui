@@ -1,28 +1,29 @@
+import 'package:axndlogin/app/components/custom_button.dart';
 import 'package:axndlogin/app/components/custom_textfield.dart';
 import 'package:axndlogin/app/components/social_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 
-import '../components/custom_button.dart';
-
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
 
-  const LoginPage({super.key, required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   // textField editing controller
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   //final AuthService authService = AuthService();
 
 // sign user in method
-  void singInUserIn(BuildContext context) async {
+  void singInUserUp(BuildContext context) async {
     // show loading circle
     showDialog(
       context: context,
@@ -33,12 +34,17 @@ class _LoginPageState extends State<LoginPage> {
       },
     );
 
-    // try sign in
+    // try creating the user
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
+      // check if password is confirmed
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+      } else {
+        // show error message, passwords don't match
+      }
       // pop the loading circle
       if (context.mounted) Navigator.of(context).pop();
     } on FirebaseAuthException catch (e) {
@@ -76,12 +82,12 @@ class _LoginPageState extends State<LoginPage> {
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               // logo
               const SizedBox(height: 20),
-              const Icon(Icons.lock_rounded, size: 100),
+              const Icon(Icons.lock_rounded, size: 50),
 
-              // Welcome back, you're been missed!
+              // Let\'s create an account for you!
               const SizedBox(height: 40),
               Text(
-                'Welcome back GYM member, Get fit now!',
+                'Let\'s create an account for you!',
                 style: TextStyle(color: Colors.grey[700], fontSize: 16),
               ),
 
@@ -100,6 +106,14 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
               ),
 
+              // confirm password textfield
+              const SizedBox(height: 10),
+              CustomTextField(
+                controller: confirmPasswordController,
+                hinText: 'Confirm Password',
+                obscureText: true,
+              ),
+
               // forgot password
               const SizedBox(height: 10),
               Padding(
@@ -115,12 +129,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
-              // sign in button
+              // sign up button
               const SizedBox(height: 25),
               CustomButton(
-                textButton: 'Sign In',
+                textButton: 'Sign Up',
                 onTap: () {
-                  singInUserIn(context);
+                  singInUserUp(context);
                 },
               ),
 
@@ -173,13 +187,13 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Not a member?',
+                    'Already have an account?',
                     style: TextStyle(color: Colors.grey[700]),
                   ),
                   const SizedBox(width: 4),
                   GestureDetector(
                     onTap: widget.onTap,
-                    child: Text('Register now',
+                    child: Text('Login now',
                         style: TextStyle(
                             color: Colors.grey[700],
                             fontWeight: FontWeight.bold)),
