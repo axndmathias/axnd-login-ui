@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/custom_button.dart';
+import 'forgot_pwd_page.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -107,9 +108,19 @@ class _LoginPageState extends State<LoginPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.grey[600]),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const ForgotPasswordPage();
+                        }));
+                      },
+                      child: Text(
+                        'Forgot Password?',
+                        style: TextStyle(
+                            color: Colors.grey[600],
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ],
                 ),

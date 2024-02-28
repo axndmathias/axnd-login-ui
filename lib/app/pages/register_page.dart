@@ -82,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               // logo
               const SizedBox(height: 20),
-              const Icon(Icons.lock_rounded, size: 50),
+              const Icon(Icons.lock_person, size: 60),
 
               // Let\'s create an account for you!
               const SizedBox(height: 40),
